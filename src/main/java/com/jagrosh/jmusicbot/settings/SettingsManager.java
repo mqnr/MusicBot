@@ -22,6 +22,7 @@ import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.util.HashMap;
 import net.dv8tion.jda.api.entities.Guild;
+import org.jetbrains.annotations.NotNull;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.slf4j.Logger;
@@ -85,12 +86,12 @@ public class SettingsManager implements GuildSettingsManager<Settings>
      * @return the existing settings, or new settings for that guild
      */
     @Override
-    public Settings getSettings(Guild guild)
+    public @NotNull Settings getSettings(Guild guild)
     {
         return getSettings(guild.getIdLong());
     }
 
-    public Settings getSettings(long guildId)
+    public @NotNull Settings getSettings(long guildId)
     {
         return settings.computeIfAbsent(guildId, id -> createDefaultSettings());
     }
